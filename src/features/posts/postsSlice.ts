@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 
 interface IPostData {
   userId: number,
@@ -22,12 +22,17 @@ const getFakeJsonData = async (): Promise<Array<IPostData>> => {
   return response;
 }
 
-const fetchPostData = createAsyncThunk(
+export const fetchPostData = createAsyncThunk(
   'posts/load',
   async (_arg, _thunkAPI) => {
     const response = await getFakeJsonData();
     return response
   }
+)
+
+export const postSelector = createSelector(
+  (state: {posts: IPostsSlice}) => state.posts,
+  (posts) => posts.posts
 )
 
 const postsSlice = createSlice({
