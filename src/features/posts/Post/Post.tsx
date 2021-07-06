@@ -15,14 +15,12 @@ export const Post: React.FC<PostProps> = () => {
 
   return post 
   ? 
-    (
-      <div>
-        <h2>{post?.title}</h2>
-        <PostBody text={post?.body} />
-      </div>
-    ) 
+    <div>
+      <h2>{post?.title}</h2>
+      <PostBody text={post?.body} />
+    </div> 
   :
     <div>
       No post found with that ID
-    </div>;
+    </div>
 };

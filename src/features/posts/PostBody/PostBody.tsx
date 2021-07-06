@@ -9,10 +9,13 @@ export const PostBody: React.FC<IPostBodyProps> = ({ text, summary = false }) =>
   const textArray = text.split("\n")
 
   return summary 
-  ? (<p>{textArray[0]}</p>)
-  : (
-      <>
-        {textArray.map((splitText) => <p>{splitText}</p>)}
-      </>
-    )
+  ? 
+    <p>
+      {textArray[0]}
+    </p>
+  : 
+    <>
+      {textArray.map((splitText) => <p>{splitText}</p>)}
+    </>
+    
 };
