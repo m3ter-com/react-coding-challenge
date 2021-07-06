@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { PostBody } from '../PostBody/PostBody';
-import { fetchPostData, isLoadingSelector, postSelector } from '../postsSlice';
+import { PostBody } from 'features/posts/PostBody/PostBody';
+import { fetchPostData, isLoadingSelector, postSelector } from 'features/posts/postsSlice';
 
 export interface PostsProps {}
 
@@ -11,7 +11,7 @@ export const Posts: React.FC<PostsProps> = () => {
   const posts = useSelector(postSelector);
   const isLoading = useSelector(isLoadingSelector);
   
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(fetchPostData());
   }, [])
 
