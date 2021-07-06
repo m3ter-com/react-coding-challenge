@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IPostData {
   userId: number,
@@ -24,7 +24,8 @@ const getFakeJsonData = async (): Promise<Array<IPostData>> => {
 
 export const fetchPostData = createAsyncThunk(
   'posts/load',
-  async (_arg, _thunkAPI) => {
+  async (_arg, thunkAPI) => {
+    thunkAPI.dispatch(postsSlice.actions.reducer(true))
     const response = await getFakeJsonData();
     return response
   }
@@ -35,15 +36,24 @@ export const postSelector = createSelector(
   (posts) => posts.posts
 )
 
+export const isLoadingSelector = createSelector(
+  (state: {posts: IPostsSlice}) => state.posts,
+  (posts) => posts.isLoading
+)
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    // TODO <-- putting this todo here was very sneaky
+    reducer: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload
+      return state;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPostData.fulfilled, (state, action) => {
       state.posts = action.payload;
+      state.isLoading = false;
     })
   }
 });
