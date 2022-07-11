@@ -1,8 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// TODO: Add a type for `Post` based on the API data (https://jsonplaceholder.typicode.com/posts)
-// TODO: Add a type for the state structure and also use it in reducers.
-const initialState = {
+interface IPost {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+interface IPostSlice {
+  isLoading: boolean;
+  posts: IPost[]
+}
+
+const initialState: IPostSlice = {
   isLoading: false,
   posts: [],
 };
