@@ -1,8 +1,22 @@
 import React from 'react';
 
-// TODO: Create a type for the props.
-export const PostBody: React.FC<any> = ({ text, summary = false }) => {
-  // TODO: Split the text into paragraphs (<p> tags) around new lines (`\n`) rather than using a <pre>
-  // TODO: If summary is true, only output the first paragraph.
-  return <pre>{text}</pre>;
+interface IPostBody {
+  text: string;
+  summary?: boolean;
+}
+
+export const PostBody: React.FC<IPostBody> = ({ text, summary = false }) => {
+  const textLines: string[] = text.split('\n');
+
+  if (summary) {
+    return <p>{textLines[0]}</p>
+  }
+
+  return (
+    <>
+      {
+        textLines.map((line, idx) => <p key={`${idx}_${line}`}>{line}</p>)
+      }
+    </>
+  )
 };
