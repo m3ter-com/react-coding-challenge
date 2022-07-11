@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import { Posts } from './features/posts/Posts';
-import { Post } from './features/posts/Post';
+import { Posts } from 'features/posts/Posts';
+import { Post } from 'features/posts/Post';
 
 const App = () => {
   return (

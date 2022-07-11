@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../app/store';
+import { useAppSelector } from 'app/store';
 
 import { PostBody } from '../PostBody/PostBody';
 
