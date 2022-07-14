@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PostBody } from '../PostBody/PostBody';
+import { PostBody } from 'features/posts/PostBody/PostBody';
 
 export interface PostsProps {}
 
-export const Posts: React.FC<PostsProps> = () => {
+export const Posts: React.FC<PostsProps> = (): JSX.Element => {
   // TODO: Dispatch an action when this component is mounted that loads the post data.
   // TODO: Get the post data and loading state from the store instead of this test data.
   const posts = useMemo(
