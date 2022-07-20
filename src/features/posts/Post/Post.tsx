@@ -17,7 +17,7 @@ export const Post: React.FC<PostProps> = () => {
   return (
     <div>
       <h2>{post.title}</h2>
-      <PostBody text={post.body} />
+      <PostBody text={post.body} id={parseInt(id)} />
     </div>
   );
 };
