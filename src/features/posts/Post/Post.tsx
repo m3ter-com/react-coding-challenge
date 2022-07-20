@@ -1,22 +1,18 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
+import { useParams } from 'react-router-dom';
 
 import { PostBody } from '../PostBody/PostBody';
 
-export interface PostProps {}
+export interface PostProps { }
 
 export const Post: React.FC<PostProps> = () => {
   // TODO: Get the ID from the router params (e.g. /posts/12 => 12) and get the
   // post from the Redux store that matches the ID to replace this test data.
-  const post = useMemo(
-    () => ({
-      userId: 1,
-      id: 2,
-      title: 'qui est esse',
-      body:
-        'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla',
-    }),
-    []
-  );
+  const { id } = useParams<{ id: string }>();
+  const { posts } = useSelector((state: RootState) => state.posts);
+  const post = posts.filter(item => item.id === parseInt(id))[0];
 
   return (
     <div>
